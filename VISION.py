@@ -4,6 +4,7 @@ from PyQt5.QtMultimediaWidgets import *
 import os 
 import sys 
 import time 
+import pyttsx3
 
 class Vision(QMainWindow): 
 
@@ -19,7 +20,7 @@ class Vision(QMainWindow):
 		self.status = QStatusBar()
 		self.status.setStyleSheet('background : black;\ncolor:white;\nfont: 75 12pt "LEMON MILK";') 
 		self.setStatusBar(self.status) 
-		self.save_path = "" 
+		self.savePath = os.getcwd()+'\Vision' 
 		self.viewfinder = QCameraViewfinder() 
 		self.viewfinder.show() 
 		self.setCentralWidget(self.viewfinder) 
@@ -50,6 +51,13 @@ class Vision(QMainWindow):
 		self.setWindowTitle("VISION") 
 		self.show() 
 
+	def speak(self,audio):
+            engine = pyttsx3.init('sapi5')
+            voices = engine.getProperty('voices')
+            engine.setProperty('voice', voices[0].id)
+            engine.say(audio)
+            engine.runAndWait()
+
 	def selectCamera(self, i): 
 		self.camera = QCamera(self.availableCameras[i]) 
 		self.camera.setViewfinder(self.viewfinder) 
@@ -67,17 +75,18 @@ class Vision(QMainWindow):
 
 	def clickPhoto(self): 
 		timestamp = time.strftime("%d-%b-%Y-%H_%M_%S") 
-		self.capture.capture(os.path.join(self.save_path, "%s-%04d-%s.jpg" % ( 
+		self.capture.capture(os.path.join(self.savePath, "%s-%04d-%s.jpg" % ( 
 			self.currentCameraName, 
 			self.saveSeq, 
 			timestamp 
 		))) 
 		self.saveSeq += 1
+		self.speak('Image has been saved.')
 
 	def changeFolder(self): 
 		path = QFileDialog.getExistingDirectory(self, "PICTURE LOCATION", "") 
 		if path: 
-			self.save_path = path 
+			self.savePath = path 
 			self.saveSeq = 0
 
 	def alert(self, msg): 
