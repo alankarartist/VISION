@@ -6,6 +6,8 @@ import sys
 import time 
 import pyttsx3
 
+cwd = os.path.dirname(os.path.realpath(__file__))
+
 class Vision(QMainWindow): 
 
 	def __init__(self): 
@@ -13,14 +15,14 @@ class Vision(QMainWindow):
 		self.setGeometry(100, 100, 
 						800, 600) 
         
-		self.setStyleSheet('background : black;\ncolor:white;\nfont: 75 12pt "LEMON MILK";') 
+		self.setStyleSheet('background : black;\ncolor:white;\nfont: 75 12pt "Segoe UI";') 
 		self.availableCameras = QCameraInfo.availableCameras() 
 		if not self.availableCameras: 
 			sys.exit() 
 		self.status = QStatusBar()
-		self.status.setStyleSheet('background : black;\ncolor:white;\nfont: 75 12pt "LEMON MILK";') 
+		self.status.setStyleSheet('background : black;\ncolor:white;\nfont: 75 12pt "Segoe UI";') 
 		self.setStatusBar(self.status) 
-		self.savePath = os.getcwd()+'\Vision' 
+		self.savePath = cwd+'\Vision' 
 		self.viewfinder = QCameraViewfinder() 
 		self.viewfinder.show() 
 		self.setCentralWidget(self.viewfinder) 
@@ -46,7 +48,7 @@ class Vision(QMainWindow):
 								for camera in self.availableCameras]) 
 		cameraSelector.currentIndexChanged.connect(self.selectCamera) 
 		toolbar.addWidget(cameraSelector) 
-		toolbar.setStyleSheet('QToolTip { background-color: black; color: white; border: black solid 1px }\nbackground : black;\ncolor:white;\nfont: 75 12pt "LEMON MILK";')
+		toolbar.setStyleSheet('QToolTip { background-color: black; color: white; border: black solid 1px }\nbackground : black;\ncolor:white;\nfont: 75 12pt "Segoe UI";')
 		toolbar.setMovable(False)
 		self.setWindowTitle("VISION") 
 		self.show() 
