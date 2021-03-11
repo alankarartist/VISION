@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
+from PyQt5.QtGui import *
 import os 
 import sys 
 import time 
@@ -12,9 +13,8 @@ class Vision(QMainWindow):
 
 	def __init__(self): 
 		super().__init__() 
-		self.setGeometry(100, 100, 
-						800, 600) 
-        
+		self.setGeometry(100, 100, 800, 600)
+		self.setWindowIcon(QIcon(os.path.join(cwd+'\\UI\\icons', 'vision.png')))
 		self.setStyleSheet('background : black;\ncolor:white;\nfont: 75 12pt "Segoe UI";') 
 		self.availableCameras = QCameraInfo.availableCameras() 
 		if not self.availableCameras: 
