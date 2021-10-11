@@ -18,3 +18,9 @@ pip install PyAudio
 ![](/VISION.JPG)
 
 1. First, SELECT CAMERA then, if you want to change the save location of the image click on CHANGE SAVE LOCATION (default location will be Vision folder), and then click on CLICK PHOTO.
+
+## Contributor
+
+<a href="https://github.com/alankarartist/VISION/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=alankarartist/VISION" />
+</a>
